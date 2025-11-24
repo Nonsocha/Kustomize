@@ -197,5 +197,18 @@ These steps belong to a practical Kubernetes lab, where you:
 
 Your earlier error:
 ```
+
+### verification Task
+**1 Check Kustomized version**
+Run:
+```
+ Kustomized version
+ ```
+**2 Check Kubctl version**
+Run:
+ ```
+ Kubctl version
+ ```
+
 error: no objects passed to apply
 ```
