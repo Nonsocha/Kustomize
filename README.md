@@ -196,10 +196,12 @@ These steps belong to a practical Kubernetes lab, where you:
 - Then use Kustomize overlays to customize deployments
 
 Your earlier error:
-```
+ ```
 
 ### verification Task
+
 **1 Check Kustomized version**
+
 Run:
 
 ```
@@ -211,7 +213,7 @@ Run:
 
 ```
  Kubctl version
- ```
+```
 
 ### 4. Creating a Kustomize Project
 
@@ -225,9 +227,13 @@ Run:
   │   └── kustomization.yaml
 
   └── overlays
-    ├── dev
+       
+        ├── dev
+    
     │   └── kustomization.yaml
+    
     └── prod
+    
         └── kustomization.yaml
  ```
 
@@ -235,19 +241,19 @@ base/deployment.yaml
 
   ```
        apiVersion: apps/v1
-    kind: Deployment
-    metadata:
-    name: webapp
-   spec:
-   replicas: 1
-   selector:
-    matchLabels:
+      kind: Deployment
+      metadata:
+     name: webapp
+     spec:
+      replicas: 1
+     selector:
+      matchLabels:
       app: webapp
-   template:
-    metadata:
-      labels:
+     template:
+      metadata:
+       labels:
         app: webapp
-    spec:
+     spec:
       containers:
       - name: webapp
         image: nginx:latest
