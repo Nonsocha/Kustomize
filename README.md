@@ -210,5 +210,110 @@ Run:
  Kubctl version
  ```
 
+### 4. Creating a Kustomize Project
+
+  ```
+    kube-lesson/
+├── base
+│   ├── deployment.yaml
+│   └── kustomization.yaml
+└── overlays
+    ├── dev
+    │   └── kustomization.yaml
+    └── prod
+        └── kustomization.yaml
+```
+base/deployment.yaml
+
+  ```
+       apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webapp
+  template:
+    metadata:
+      labels:
+        app: webapp
+    spec:
+      containers:
+      - name: webapp
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+  ```
 error: no objects passed to apply
+```
+base/kustomization.yaml
+  ```
+   resources:
+  - deployment.yaml
+  ```
+### 5. Running Kustomize
+Build the final YAML
+ ```
+  kustomize build base
+```
+**Apply directly via kubectl
+
+```
+
+overlays/dev/kustomization.yaml
+
+```
+  resources:
+  - ../../base (uses the base resources)
+
+patches:
+- patch.yaml(Applies the patch created)
+```
+overlays/dev/patch.yaml
+
+```
+ apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp
+spec:
+  replicas: 2
+```
+N/B: Overlays should only override what is different from the base.which include:
+- replicas
+- service type
+- environment
+- image tag/version
+- resource limit
+- ConfigMap
+
+**Apply the dev overlay**
+
+```
+kubectl apply -k overlays/dev
+```
+### 8. Testing Your Setup
+
+```
+ kubectl get nodes
+```
+**Check deployment applied**
+
+```
+kubectl get deployments
+```
+
+Expected output example:
+
+```
+NAME      READY   UP-TO-DATE   AVAILABLE   AGE
+webapp    2/2     2            2           30s
+```
+
+**Validate final build**
+
+```
+kustomize build overlays/dev
 ```
