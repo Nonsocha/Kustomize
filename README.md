@@ -203,23 +203,23 @@ Your earlier error:
 Run:
 ```
  Kustomized version
- ```
+```
 **2 Check Kubctl version**
 Run:
- ```
+```
  Kubctl version
  ```
 
 ### 4. Creating a Kustomize Project
 
-  ```
-    kube-lesson/
+```
+ k8s-project/
 
 ├── base
 
-│   ├── deployment.yaml
+  │   ├── deployment.yaml
 
-│   └── kustomization.yaml
+  │   └── kustomization.yaml
 
 └── overlays
 
@@ -233,7 +233,7 @@ Run:
 ```
 base/deployment.yaml
 
-  ```
+```
        apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -253,17 +253,17 @@ spec:
         image: nginx:latest
         ports:
         - containerPort: 80
-  ```
+```
 error: no objects passed to apply
 ```
 base/kustomization.yaml
-  ```
+```
    resources:
   - deployment.yaml
-  ```
+```
 ### 5. Running Kustomize
 Build the final YAML
- ```
+```
   kustomize build base
 ```
 **Apply directly via kubectl
