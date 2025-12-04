@@ -214,13 +214,21 @@ Run:
 
   ```
     kube-lesson/
+
 ├── base
+
 │   ├── deployment.yaml
+
 │   └── kustomization.yaml
+
 └── overlays
+
     ├── dev
+    
     │   └── kustomization.yaml
+    
     └── prod
+    
         └── kustomization.yaml
 ```
 base/deployment.yaml
