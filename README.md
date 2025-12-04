@@ -123,9 +123,9 @@ Replace X.Y,z with the right version
 The /usr/local/bin directory is a common choice.
  Run
   
-  ```
+```
    sudo mv kustomize /usr/local/bin/
-   ```
+ ```
 
 **8. Check Kustomize Installation**
 
@@ -211,7 +211,6 @@ Run:
  ```
 
 ### 4. Creating a Kustomize Project
-
 ```
  k8s-project/
 
@@ -230,15 +229,16 @@ Run:
     └── prod
     
         └── kustomization.yaml
-```
+ ```
+
 base/deployment.yaml
 
 ```
        apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: webapp
-spec:
+  kind: Deployment
+  metadata:
+   name: webapp
+ spec:
   replicas: 1
   selector:
     matchLabels:
@@ -253,14 +253,14 @@ spec:
         image: nginx:latest
         ports:
         - containerPort: 80
-```
+  ```
 error: no objects passed to apply
-```
+  ```
 base/kustomization.yaml
-```
+ ```
    resources:
   - deployment.yaml
-```
+ ```
 ### 5. Running Kustomize
 Build the final YAML
 ```
