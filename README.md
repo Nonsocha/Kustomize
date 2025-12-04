@@ -258,9 +258,6 @@ base/deployment.yaml
         - containerPort: 80
    ```
 
-error: no objects passed to apply
-
-  ```
    base/kustomization.yaml
   
   ```
@@ -315,11 +312,13 @@ N/B: Overlays should only override what is different from the base.which include
 ```
 kubectl apply -k overlays/dev
 ```
+
 ### 8. Testing Your Setup
 
 ```
  kubectl get nodes
 ```
+
 **Check deployment applied**
 
 ```
