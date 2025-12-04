@@ -195,9 +195,6 @@ These steps belong to a practical Kubernetes lab, where you:
 
 - Then use Kustomize overlays to customize deployments
 
-Your earlier error:
- ```
-
 ### verification Task
 
 **1 Check Kustomized version**
@@ -218,23 +215,23 @@ Run:
 ### 4. Creating a Kustomize Project
 
 ```
- k8s-project/
+   k8s-project/
 
-├── base
+     ├── base
 
-  │   ├── deployment.yaml
+       │   ├── deployment.yaml
 
-  │   └── kustomization.yaml
+       │   └── kustomization.yaml
 
-  └── overlays
+     └── overlays
        
         ├── dev
     
-    │   └── kustomization.yaml
+           │   └── kustomization.yaml
     
-    └── prod
+       └── prod
     
-        └── kustomization.yaml
+              └── kustomization.yaml
  ```
 
 base/deployment.yaml
