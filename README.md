@@ -146,9 +146,9 @@ Move it into /usr/local/bin/
 
 Then confirm installation using:
 
-```
+ ```
  kustomize version
-```
+ ```
 If this shows a version, Kustomize is correctly installed.
 
 ### 2. Setting Up Minikube 
@@ -201,16 +201,20 @@ Your earlier error:
 ### verification Task
 **1 Check Kustomized version**
 Run:
+
 ```
  Kustomized version
 ```
+
 **2 Check Kubctl version**
 Run:
+
 ```
  Kubctl version
  ```
 
 ### 4. Creating a Kustomize Project
+
 ```
  k8s-project/
 
@@ -220,30 +224,26 @@ Run:
 
   │   └── kustomization.yaml
 
-└── overlays
-
+  └── overlays
     ├── dev
-    
     │   └── kustomization.yaml
-    
     └── prod
-    
         └── kustomization.yaml
  ```
 
 base/deployment.yaml
 
-```
+  ```
        apiVersion: apps/v1
-  kind: Deployment
-  metadata:
-   name: webapp
- spec:
-  replicas: 1
-  selector:
+    kind: Deployment
+    metadata:
+    name: webapp
+   spec:
+   replicas: 1
+   selector:
     matchLabels:
       app: webapp
-  template:
+   template:
     metadata:
       labels:
         app: webapp
@@ -253,21 +253,29 @@ base/deployment.yaml
         image: nginx:latest
         ports:
         - containerPort: 80
-  ```
+   ```
+
 error: no objects passed to apply
+
   ```
-base/kustomization.yaml
- ```
+   base/kustomization.yaml
+  
+  ```
    resources:
   - deployment.yaml
  ```
+
 ### 5. Running Kustomize
 Build the final YAML
+
 ```
   kustomize build base
 ```
+
 **Apply directly via kubectl
 
+```
+kubectl apply -k overlays/dev
 ```
 
 overlays/dev/kustomization.yaml
@@ -276,10 +284,11 @@ overlays/dev/kustomization.yaml
   resources:
   - ../../base (uses the base resources)
 
-patches:
-- patch.yaml(Applies the patch created)
-```
-overlays/dev/patch.yaml
+  patches:
+  - patch.yaml(Applies the patch created)
+ ```
+
+ overlays/dev/patch.yaml
 
 ```
  apiVersion: apps/v1
@@ -289,6 +298,7 @@ metadata:
 spec:
   replicas: 2
 ```
+
 N/B: Overlays should only override what is different from the base.which include:
 - replicas
 - service type
